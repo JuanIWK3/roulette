@@ -1,0 +1,68 @@
+#root {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.roulette {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  background: conic-gradient(
+    red 0deg 45deg,
+    // 8 red
+    black 45deg 90deg,
+    // 1 black
+    red 90deg 135deg,
+    // 2 red
+    black 135deg 180deg,
+    // 3 black
+    red 180deg 225deg,
+    // 4 red
+    black 225deg 270deg,
+    // 5 black
+    rgb(73, 129, 0) 270deg 315deg,
+    // 6 green
+    black 315deg 360deg // 8 black
+    // 7
+  );
+  animation: rotate 5s forwards ease-in-out;
+
+  .number {
+    @for $i from 1 to 9 {
+      &:nth-child(#{$i}) {
+        &::after {
+          content: "#{$i}";
+          // translate: 200px;
+          transform: translateY(175px);
+          position: absolute;
+          left: 195px;
+          top: 188px;
+          rotate: calc(#{$i} * -45deg + 22deg);
+        }
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    height: 300px;
+    width: 300px;
+    background: #111;
+    border-radius: 50%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 910deg;
+  }
+}
